@@ -20,3 +20,6 @@ class DoublyLinkedList():
             print(node.data),
             last = node
             node = node.next
+
+
+            
