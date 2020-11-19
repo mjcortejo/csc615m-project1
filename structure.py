@@ -1,11 +1,12 @@
 class Node():
-    def __init__(self, data, prev=None, next=None)
+    def __init__(self, data, prev=None, next=None):
         self.data = data
         self.prev = None
         self.next = None
 
+#https://www.tutorialspoint.com/python_data_structure/python_advanced_linked_list.htm
 class DoublyLinkedList():
-    def __init__(self, input_string):
+    def __init__(self):
         self.head = None
 
     def push(self, data):
@@ -20,6 +21,5 @@ class DoublyLinkedList():
             print(node.data),
             last = node
             node = node.next
-
 
             
