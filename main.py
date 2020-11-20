@@ -2,6 +2,7 @@ from structure import DoublyLinkedList
 
 class TwoWayAccepter():
     def __init__(self, case):# Accepts Double Linked List object
+        self.original = case.head
         self.current = case.head
 
     def left(self):
@@ -13,6 +14,24 @@ class TwoWayAccepter():
     def data(self):
         return self.current.data
 
+    def write(self, char):
+        self.current.data = char
+        print(self.chars())
+
+    def chars(self):
+        node = self.original
+        chars = ""
+        while node is not None:
+            chars = chars + node.data
+            node = node.next
+        return chars
+
+    def accept(self):
+        print("ACCEPTED")
+
+    def reject(self):
+        print("REJECTED")
+
 def create_case(string):
     input_string = DoublyLinkedList()
     for each_char in string:
@@ -20,11 +39,46 @@ def create_case(string):
     return input_string
 
 def palindrome():
-    cases = []
-    cases.append(create_case("#ababcabab#"))
+    cases = [
+        create_case("#abacaba#"),
+        create_case("#abacabb#"),
+        create_case("#abacbab#")
+    ]
 
-def NumAEqualsNumB():
-    cases = []
-    cases.append(create_case("#abacaba#"))
+    for each_case in cases:
+        twa = TwoWayAccepter(each_case)
+        print(f"CURRENT CASE {twa.chars()}")
+        if twa.data() == "#":
+            twa.right()
 
-NumAEqualsNumB()
+        while twa.data() in ["a", "b"]:
+            twa.right()
+            if twa.data() == "c":
+                break
+
+        while twa.data() in ["c", "x"]:
+            twa.right()
+            if twa.data() == "a":
+                twa.write("x")
+                while twa.data() in ["c", "x"]:
+                    twa.left()
+                    if twa.data() == "b":
+                        twa.reject()
+                    elif twa.data() == "a":
+                        twa.write("x")
+                        break
+            if twa.data() == "b":
+                twa.write("x")
+                while twa.data() in ["c", "x"]:
+                    twa.left()
+                    if twa.data() == "a":
+                        twa.reject()
+                        continue
+                    elif twa.data() == "b":
+                        twa.write("x")
+                        break
+            if twa.data() == "#":
+                twa.accept()
+
+
+palindrome()
