@@ -119,6 +119,8 @@ def StringAEqualsToStringB():
                         elif twa.data() == "a":
                             twa.write("x")
                             break
+                        elif twa.data() == "b":
+                            twa.reject()
 
                     while True:
                         if twa.data() in ["x", "c", "a", "b"]:
@@ -143,6 +145,8 @@ def StringAEqualsToStringB():
                         elif twa.data() == "b":
                             twa.write("x")
                             break
+                        elif twa.data() == "a":
+                            twa.reject()
 
                     while True:
                         if twa.data() in ["x", "c", "a", "b"]:
@@ -150,7 +154,8 @@ def StringAEqualsToStringB():
                         if twa.data() == "#":
                             twa.right()
                             break
-
+                elif twa.data() == "#":
+                    twa.accept()
 
         except Exception as e:
             print(e)
