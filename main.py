@@ -88,6 +88,7 @@ def StringAEqualsToStringB():
         create_case("#abacaba#"),
         create_case("#abacaab#"),
         create_case("#babcbaa#"),
+        create_case("#bacba#"),
         create_case("#aabcaa#")
     ]
 
@@ -119,7 +120,7 @@ def StringAEqualsToStringB():
                         elif twa.data() == "a":
                             twa.write("x")
                             break
-                        elif twa.data() == "b":
+                        elif twa.data() in ["b", "#"]:
                             twa.reject()
 
                     while True:
@@ -145,7 +146,7 @@ def StringAEqualsToStringB():
                         elif twa.data() == "b":
                             twa.write("x")
                             break
-                        elif twa.data() == "a":
+                        elif twa.data() in ["a", "#"]:
                             twa.reject()
 
                     while True:
