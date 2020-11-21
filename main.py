@@ -39,6 +39,7 @@ def create_case(string):
     return input_string
 
 def palindrome():
+    print("Palindrome")
     cases = [
         create_case("#abacaba#"),
         create_case("#abacabb#"),
@@ -74,7 +75,6 @@ def palindrome():
                         twa.left()
                         if twa.data() == "a":
                             twa.reject()
-                            continue
                         elif twa.data() == "b":
                             twa.write("x")
                             break
@@ -84,6 +84,7 @@ def palindrome():
             print(e)
 
 def StringAEqualsToStringB():
+    print("StringAEqualsToStringB")
     cases = [
         create_case("#abacaba#"),
         create_case("#abacaab#"),
@@ -107,7 +108,7 @@ def StringAEqualsToStringB():
                 elif twa.data() == "a":
                     twa.write("x")
                     twa.right()
-                    while twa.data() in ["a", "b", "c"]: #no c here
+                    while twa.data() in ["a", "b", "c"]:
                         twa.right()
                         if twa.data() == "c":
                             twa.right()
@@ -133,7 +134,7 @@ def StringAEqualsToStringB():
                 elif twa.data() == "b":
                     twa.write("x")
                     twa.right()
-                    while twa.data() in ["a", "b", "c"]: #no c here
+                    while twa.data() in ["a", "b", "c"]:
                         twa.right()
                         if twa.data() == "c":
                             twa.right()
@@ -161,6 +162,25 @@ def StringAEqualsToStringB():
         except Exception as e:
             print(e)
 
+def NumAEqualsNumB():
+    print("NumAEqualsNumB")
+    cases = [
+        create_case("#aababb#"),
+        create_case("#babbaa#"),
+        create_case("#aabab#"),
+        create_case("#babb#")
+    ]
 
-# palindrome()
+    for each_case in cases:
+        try:
+            twa = TwoWayAccepter(each_case)
+            print(f"CURRENT CASE {twa.chars()}")
+
+            if twa.data() == "#":
+                twa.right()
+
+        except Exception as e:
+            print(e)
+
+palindrome()
 StringAEqualsToStringB()
