@@ -27,10 +27,10 @@ class TwoWayAccepter():
         return chars
 
     def accept(self):
-        print("ACCEPTED")
+        raise Exception("ACCEPTED")
 
     def reject(self):
-        print("REJECTED")
+        raise Exception("REJECTED")
 
 def create_case(string):
     input_string = DoublyLinkedList()
@@ -46,39 +46,58 @@ def palindrome():
     ]
 
     for each_case in cases:
-        twa = TwoWayAccepter(each_case)
-        print(f"CURRENT CASE {twa.chars()}")
-        if twa.data() == "#":
-            twa.right()
-
-        while twa.data() in ["a", "b"]:
-            twa.right()
-            if twa.data() == "c":
-                break
-
-        while twa.data() in ["c", "x"]:
-            twa.right()
-            if twa.data() == "a":
-                twa.write("x")
-                while twa.data() in ["c", "x"]:
-                    twa.left()
-                    if twa.data() == "b":
-                        twa.reject()
-                    elif twa.data() == "a":
-                        twa.write("x")
-                        break
-            if twa.data() == "b":
-                twa.write("x")
-                while twa.data() in ["c", "x"]:
-                    twa.left()
-                    if twa.data() == "a":
-                        twa.reject()
-                        continue
-                    elif twa.data() == "b":
-                        twa.write("x")
-                        break
+        try:
+            twa = TwoWayAccepter(each_case)
+            print(f"CURRENT CASE {twa.chars()}")
             if twa.data() == "#":
-                twa.accept()
+                twa.right()
+
+            while twa.data() in ["a", "b"]:
+                twa.right()
+                if twa.data() == "c":
+                    break
+
+            while twa.data() in ["c", "x"]:
+                twa.right()
+                if twa.data() == "a":
+                    twa.write("x")
+                    while twa.data() in ["c", "x"]:
+                        twa.left()
+                        if twa.data() == "b":
+                            twa.reject()
+                        elif twa.data() == "a":
+                            twa.write("x")
+                            break
+                if twa.data() == "b":
+                    twa.write("x")
+                    while twa.data() in ["c", "x"]:
+                        twa.left()
+                        if twa.data() == "a":
+                            twa.reject()
+                            continue
+                        elif twa.data() == "b":
+                            twa.write("x")
+                            break
+                if twa.data() == "#":
+                    twa.accept()
+        except Exception as e:
+            print(e)
+
+# def StringAEqualsToStringB():
+#     cases = [
+#         create_case("#aabcaab#"),
+#         create_case("#abacaab#"),
+#         create_case("#babcbaa#"),
+#         create_case("#aabcaa#")
+#     ]
+#
+#     for each_case in cases:
+#         twa = TwoWayAccepter(each_case)
+#         print(f"CURRENT CASE {twa.chars()}")
+#
+#         if twa.data() == "#":
+#             twa.right()
 
 
 palindrome()
+# StringAEqualsToStringB()
