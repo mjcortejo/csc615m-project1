@@ -83,21 +83,54 @@ def palindrome():
         except Exception as e:
             print(e)
 
-# def StringAEqualsToStringB():
-#     cases = [
-#         create_case("#aabcaab#"),
-#         create_case("#abacaab#"),
-#         create_case("#babcbaa#"),
-#         create_case("#aabcaa#")
-#     ]
-#
-#     for each_case in cases:
-#         twa = TwoWayAccepter(each_case)
-#         print(f"CURRENT CASE {twa.chars()}")
-#
-#         if twa.data() == "#":
-#             twa.right()
+def StringAEqualsToStringB():
+    cases = [
+        create_case("#aabcaab#"),
+        create_case("#abacaab#"),
+        create_case("#babcbaa#"),
+        create_case("#aabcaa#")
+    ]
+
+    for each_case in cases:
+        try:
+            twa = TwoWayAccepter(each_case)
+            print(f"CURRENT CASE {twa.chars()}")
+            if twa.data() == "#":
+                twa.right()
+
+            while True:
+                print(twa.data())
+                if twa.data() in ["x", "c"]:
+                    twa.right()
+                    continue
+                elif twa.data() == "a":
+                    twa.write("x")
+                    twa.right()
+                    while twa.data() in ["a", "b"]:
+                        twa.right()
+                        if twa.data() == "c":
+                            twa.right()
+                            break
+
+                    while True:
+                        if twa.data() == "x":
+                            twa.right()
+                            continue
+                        elif twa.data() == "a":
+                            twa.write("x")
+                            break
+
+                    while True:
+                        if twa.data() in ["x", "c", "a", "b"]:
+                            twa.left()
+                        if twa.data() == "#":
+                            twa.right()
+                            break
 
 
-palindrome()
-# StringAEqualsToStringB()
+        except Exception as e:
+            print(e)
+
+
+# palindrome()
+StringAEqualsToStringB()
