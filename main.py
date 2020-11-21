@@ -85,7 +85,7 @@ def palindrome():
 
 def StringAEqualsToStringB():
     cases = [
-        create_case("#aabcaab#"),
+        create_case("#abacaba#"),
         create_case("#abacaab#"),
         create_case("#babcbaa#"),
         create_case("#aabcaa#")
@@ -99,14 +99,14 @@ def StringAEqualsToStringB():
                 twa.right()
 
             while True:
-                print(twa.data())
+                print(twa.chars())
                 if twa.data() in ["x", "c"]:
                     twa.right()
                     continue
                 elif twa.data() == "a":
                     twa.write("x")
                     twa.right()
-                    while twa.data() in ["a", "b"]:
+                    while twa.data() in ["a", "b", "c"]: #no c here
                         twa.right()
                         if twa.data() == "c":
                             twa.right()
@@ -117,6 +117,30 @@ def StringAEqualsToStringB():
                             twa.right()
                             continue
                         elif twa.data() == "a":
+                            twa.write("x")
+                            break
+
+                    while True:
+                        if twa.data() in ["x", "c", "a", "b"]:
+                            twa.left()
+                        if twa.data() == "#":
+                            twa.right()
+                            break
+
+                elif twa.data() == "b":
+                    twa.write("x")
+                    twa.right()
+                    while twa.data() in ["a", "b", "c"]: #no c here
+                        twa.right()
+                        if twa.data() == "c":
+                            twa.right()
+                            break
+
+                    while True:
+                        if twa.data() == "x":
+                            twa.right()
+                            continue
+                        elif twa.data() == "b":
                             twa.write("x")
                             break
 
