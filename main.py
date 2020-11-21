@@ -101,7 +101,6 @@ def StringAEqualsToStringB():
                 twa.right()
 
             while True:
-                print(twa.chars())
                 if twa.data() in ["x", "c"]:
                     twa.right()
                     continue
