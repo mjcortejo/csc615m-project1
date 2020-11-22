@@ -184,7 +184,6 @@ def NumAEqualsNumB():
                 twa.right()
 
             while True:
-                print(twa.chars())
                 if twa.data() == "x":
                     twa.right()
                     continue
@@ -204,12 +203,30 @@ def NumAEqualsNumB():
                         elif twa.data() == "#":
                             twa.right()
                             break
+
+                elif twa.data() == "b":
+                    twa.write("x")
+                    while True:
+                        if twa.data() in ["b", "x"]:
+                            twa.right()
+                        elif twa.data() == "#":
+                            twa.reject()
+                        elif twa.data() == "a":
+                            twa.write("x")
+                            break
+                    while True:
+                        if twa.data() in ["a", "b", "x"]:
+                            twa.left()
+                        elif twa.data() == "#":
+                            twa.right()
+                            break
+
                 elif twa.data() == "#":
                     twa.accept()
 
         except Exception as e:
             print(e)
 
-# palindrome()
-# StringAEqualsToStringB()
+palindrome()
+StringAEqualsToStringB()
 NumAEqualsNumB()
