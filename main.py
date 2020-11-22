@@ -43,7 +43,9 @@ def palindrome():
     cases = [
         create_case("#abacaba#"),
         create_case("#abacabb#"),
-        create_case("#abacbab#")
+        create_case("#abacbab#"),
+        create_case("#baacaab#"),
+        create_case("#baacab#"),
     ]
 
     for each_case in cases:
@@ -53,13 +55,15 @@ def palindrome():
             if twa.data() == "#":
                 twa.right()
 
-            while twa.data() in ["a", "b"]:
-                twa.right()
+            while True:
+                if twa.data() in ["a", "b"]:
+                    twa.right()
                 if twa.data() == "c":
                     break
 
-            while twa.data() in ["c", "x"]:
-                twa.right()
+            while True:
+                if twa.data() in ["c", "x"]:
+                    twa.right()
                 if twa.data() == "a":
                     twa.write("x")
                     while twa.data() in ["c", "x"]:
@@ -71,8 +75,9 @@ def palindrome():
                             break
                 if twa.data() == "b":
                     twa.write("x")
-                    while twa.data() in ["c", "x"]:
-                        twa.left()
+                    while True:
+                        if twa.data() in ["c", "x"]:
+                            twa.left()
                         if twa.data() == "a":
                             twa.reject()
                         elif twa.data() == "b":
@@ -178,8 +183,31 @@ def NumAEqualsNumB():
             if twa.data() == "#":
                 twa.right()
 
+            while True:
+                print(twa.chars())
+                if twa.data() == "x":
+                    twa.right()
+                    continue
+                elif twa.data() == "a":
+                    twa.write("x")
+                    while True:
+                        if twa.data() in ["a", "x"]:
+                            twa.right()
+                        elif twa.data() == "#":
+                            twa.reject()
+                        elif twa.data() == "b":
+                            twa.write("x")
+                            break
+                    while True:
+                        if twa.data() in ["a", "b", "x"]:
+                            twa.left()
+                        elif twa.data() == "#":
+                            twa.right()
+                            break
+
         except Exception as e:
             print(e)
 
-palindrome()
-StringAEqualsToStringB()
+# palindrome()
+# StringAEqualsToStringB()
+NumAEqualsNumB()
