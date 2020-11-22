@@ -204,6 +204,8 @@ def NumAEqualsNumB():
                         elif twa.data() == "#":
                             twa.right()
                             break
+                elif twa.data() == "#":
+                    twa.accept()
 
         except Exception as e:
             print(e)
