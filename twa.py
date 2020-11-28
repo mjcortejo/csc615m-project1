@@ -38,8 +38,38 @@ def create_case(string):
         input_string.append(each_char)
     return input_string
 
-def NumAEvenAndNumBOdd():
+def simulator(cases, program):
+    for each_case in cases:
+        try:
+            twa = TwoWayAccepter(each_case)
+            current_state = 1
 
+            if twa.data() == "#":
+                twa.right()
+
+            transition_set = program[str(current_state)]
+            instruction = transition_set[twa.data()]
+
+            while True:
+                if type(instruction) == int:
+                    instruction = transition_set[twa.data()]
+                    transition_set = program[str(instruction)]
+                    if transition_set['dir'] == 'left':
+                        twa.left()
+                    elif transition_set['dir'] == 'right':
+                        twa.right()
+                elif instruction == 'accept':
+                    twa.accept()
+                elif instruction == 'reject':
+                    twa.reject()
+
+        except Exception as e:
+            print(e)
+            pass
+
+
+def NumAEvenAndNumBOdd():
+    print("NumAEvenNumBOdd")
     program = {
         '1': {'a': 1, '#': 'reject', 'b': 2, 'dir': 'right'},
         '2': {'a': 2, 'b': 1, '#': 3, 'dir': 'right'},
@@ -47,43 +77,17 @@ def NumAEvenAndNumBOdd():
         '4': {'a': 5, 'b': 4, '#': 'accept', 'dir': 'right'},
         '5': {'a': 4, 'b': 5, '#': 'reject', 'dir': 'right'}
     }
-    print("NumAEvenNumBOdd")
     cases = [
-        create_case("#aabbb#"),
-        create_case("#aabb#"),
-        create_case("#baa#"),
-        create_case("#aaab#"),
+        create_case("#aabbb#"), #accept
+        create_case("#aabb#"), #reject
+        create_case("#baa#"), #accept
+        create_case("#aaab#"), #reject
     ]
 
-    for each_case in cases:
-        try:
-            twa = TwoWayAccepter(each_case)
-            current_state = 1
-
-            if twa.data() == "#":
-                twa.right()
-
-            transition_set = program[str(current_state)]
-            instruction = transition_set[twa.data()]
-
-            while True:
-                if type(instruction) == int:
-                    instruction = transition_set[twa.data()]
-                    transition_set = program[str(instruction)]
-                    if transition_set['dir'] == 'left':
-                        twa.left()
-                    elif transition_set['dir'] == 'right':
-                        twa.right()
-                elif instruction == 'accept':
-                    twa.accept()
-                elif instruction == 'reject':
-                    twa.reject()
-
-        except Exception as e:
-            print(e)
-            pass
+    simulator(cases, program)
 
 def NumAEvenOrNumBOdd():
+    print("NumAEvenOrNumBOdd")
     program = {
         '1': {'a': 1, 'b': 2, '#': 3, 'dir': 'right'},
         '2': {'a': 2, 'b': 1, '#': 'accept', 'dir': 'right'},
@@ -91,7 +95,6 @@ def NumAEvenOrNumBOdd():
         '4': {'a': 5, 'b': 4, '#': 'accept', 'dir':'right'},
         '5': {'a': 4, 'b': 5, '#': 'reject', 'dir': 'right'}
     }
-    print("NumAEvenOrNumBOdd")
     cases = [
         create_case("#aabbb#"), #accept
         create_case("#abb#"), #reject
@@ -99,32 +102,23 @@ def NumAEvenOrNumBOdd():
         create_case("#aaabb#"), #reject
     ]
 
-    for each_case in cases:
-        try:
-            twa = TwoWayAccepter(each_case)
-            current_state = 1
+    simulator(cases, program)
 
-            if twa.data() == "#":
-                twa.right()
+def NumAPlusNumBIsEven():
+    print("NumAPlusNumBIsEven")
+    program = {
+        '1': {'a': 2, 'b': 2, '#': 'accept', 'dir': 'right'},
+        '2': {'a': 1, 'b': 1, '#': 'reject', 'dir': 'right'}
+    }
+    cases = [
+        create_case("#aabb#"), #accept
+        create_case("#aaabb#"), #reject
+        create_case("#abba#"), #accept
+        create_case("#aabba#") #reject
+    ]
 
-            transition_set = program[str(current_state)]
-            instruction = transition_set[twa.data()]
+    simulator(cases, program)
 
-            while True:
-                if type(instruction) == int:
-                    instruction = transition_set[twa.data()]
-                    transition_set = program[str(instruction)]
-                    if transition_set['dir'] == 'left':
-                        twa.left()
-                    elif transition_set['dir'] == 'right':
-                        twa.right()
-                elif instruction == 'accept':
-                    twa.accept()
-                elif instruction == 'reject':
-                    twa.reject()
-
-        except Exception as e:
-            print(e)
-            pass
-# NumAEvenAndNumBOdd()
+NumAEvenAndNumBOdd()
 NumAEvenOrNumBOdd()
+NumAPlusNumBIsEven()
