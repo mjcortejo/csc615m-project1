@@ -113,8 +113,8 @@ def NumAPlusNumBIsEven():
     cases = [
         create_case("#aabb#"), #accept
         create_case("#aaabb#"), #reject
-        create_case("#abba#"), #accept
-        create_case("#aabba#") #reject
+        create_case("#baab#"), #accept
+        create_case("#babba#") #reject
     ]
 
     simulator(cases, program)
