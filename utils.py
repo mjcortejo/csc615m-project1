@@ -1,4 +1,5 @@
 class Node():
+    #Node definition for use in Doubly Linked List implementation
     def __init__(self, data, prev=None, next=None):
         self.data = data
         self.prev = None
@@ -6,6 +7,7 @@ class Node():
 
 #https://www.tutorialspoint.com/python_data_structure/python_advanced_linked_list.htm
 class DoublyLinkedList():
+    #Will use Double linked list for this project to be able to traverse the elements using a left and right function
     def __init__(self):
         self.head = None
 
@@ -24,6 +26,7 @@ class DoublyLinkedList():
         return
 
 class TwoWayAccepter():
+    #Defining a Two Way Accepter Machine that will use the Double Linked List as its input
     def __init__(self, case):# Accepts Double Linked List object
         self.original = case.head
         self.current = case.head
@@ -50,18 +53,30 @@ class TwoWayAccepter():
         return chars
 
     def accept(self):
+        """
+        Raise exception if accepted to terminate the entire function body for this case
+        """
         raise Exception("ACCEPTED")
 
     def reject(self):
+        """
+        Raise exception if rejected to terminate the entire function body for this case
+        """
         raise Exception("REJECTED")
 
 def create_case(string):
+    """
+    Creates a case of DoubleLinkedList objects from a string input
+    """
     input_string = DoublyLinkedList()
     for each_char in string:
         input_string.append(each_char)
     return input_string
 
 def simulator(cases, program):
+    """
+    Defines the simulator that accepts cases and a program object
+    """
     for each_case in cases:
         try:
             twa = TwoWayAccepter(each_case)
