@@ -45,7 +45,7 @@ def palindrome():
         create_case("#abacabb#"),
         create_case("#abacbab#"),
         create_case("#baacaab#"),
-        create_case("#baacab#"),
+        create_case("#aaca#"),
     ]
 
     for each_case in cases:
@@ -94,7 +94,7 @@ def StringAEqualsToStringB():
         create_case("#abacaba#"),
         create_case("#abacaab#"),
         create_case("#babcbaa#"),
-        create_case("#bacba#"),
+        create_case("#aaca#"),
         create_case("#aabcaa#")
     ]
 
@@ -227,6 +227,6 @@ def NumAEqualsNumB():
         except Exception as e:
             print(e)
 
-palindrome()
-StringAEqualsToStringB()
-NumAEqualsNumB()
+# palindrome()
+# StringAEqualsToStringB()
+# NumAEqualsNumB()
